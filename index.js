@@ -5,7 +5,7 @@ const app = express();
 app.use(cors());
 
 app.get("/", (req, res) => {
-  return res.json({
+  return res.status(200).json({
     restaurant: {
       path: "Le Pain Quotidien",
       name: "Le Pain Quotidien - Montorgueil",
@@ -414,6 +414,10 @@ app.get("/", (req, res) => {
       { name: "Couverts", meals: [] },
     ],
   });
+});
+
+app.all(/.*/, (req, res) => {
+  return res.status(404).json("Not found");
 });
 
 // Northflank va nous fournir une variable process.env.PORT
